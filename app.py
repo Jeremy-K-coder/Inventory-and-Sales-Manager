@@ -35,13 +35,7 @@ def after_request(response):
 @login_required
 def index():
     """Show Dashboard"""
-    user_id = session["user_id"]
-    role = db.execute("SELECT role FROM users WHERE id = ?", user_id)
-
-    if request.method == "POST":
-        return render_template("index.html")
-    else:
-        return render_template("index.html")
+    return render_template("index.html")
     
     
 @app.route("/login", methods=["GET", "POST"])
@@ -142,3 +136,32 @@ def sales():
     
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+@app.route("/purchase", methods=["GET", "POST"])
+def new_purchase():
+    """Register user"""
+    if request.method == "POST":
+        product = request.form.get("product")
+        product_id = db.execute("SELECT id FROM products WHERE product_name = ?", product)
+        date = request.form.get("date")
+        quantity = request.form.get("purchase_quantity")
+        purchase_price = request.form.get("purchase_price")
+        purchase_amount = quantity * purchase_price
+
+        if not product_id:
+            return apology("Please provide a product name!")
+        if not date:
+            return apology("Please provide a product category!")
+        elif not quantity:
+            return apology("Please provide the quantity purchased!")
+        elif not purchase_price:
+            return apology("Please provide the purchase price!")
+                
+        try:
+            db.execute("INSERT INTO purchases (product_id, date, quantity, purchase_price, purchase_amount) VALUES (?, ?, ?, ?, ?)", product_id, date, quantity, purchase_price, purchase_amount)
+            return redirect("/")
+        except:
+            return apology("Username has already been registered!")
+    else:
+        return render_template("purchase.html")
