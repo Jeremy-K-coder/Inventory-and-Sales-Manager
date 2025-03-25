@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    index
+{% endblock %}
+
+{% block main %}
+    <h1>Dashboard</h1>
+    <div class="container mt-4">
+         <!-- Sidebar -->
+         <div class="sidebar">
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/128/1828/1828673.png" class="icon"> Dashboard</a>
+            <a href="#"><img src="{{ url_for('static', filename='New sale.png') }}" class="icon"> New Sale</a>
+            <a href="/sales"><img src="{{ url_for('static', filename='Sales.png') }}" class="icon">Sales</a>
+            <a href="#"><img src="{{ url_for('static', filename='Purchases.png') }}" class="icon">Purchases</a>
+            <a href="#"><img src="{{ url_for('static', filename='Products.png') }}" class="icon"> Products</a>
+            <a href="#"><img src="{{ url_for('static', filename='Suppliers.png') }}" class="icon"> Suppliers</a>
+            <a href="#"><img src="{{ url_for('static', filename='Settings.png') }}" class="icon"> Settings</a>
+        </div>
+        <div class="row">
+            <!-- Products -->
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">Products</div>
+                    <div class="card-body">
+                        <h5 class="card-title">120</h5>
+                        <p class="card-text">Total products in inventory</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">Categories</div>
+                    <div class="card-body">
+                        <h5 class="card-title">8</h5>
+                        <p class="card-text">Different product categories</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Sales -->
+            <div class="col-md-4">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-header">Total Sales</div>
+                    <div class="card-body">
+                        <h5 class="card-title">$15,000</h5>
+                        <p class="card-text">Revenue from sales</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Purchases -->
+            <div class="col-md-4">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-header">Total Purchases</div>
+                    <div class="card-body">
+                        <h5 class="card-title">$10,000</h5>
+                        <p class="card-text">Total amount spent on purchases</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profit/Loss -->
+            <div class="col-md-4">
+                <div class="card text-white bg-danger mb-3">
+                    <div class="card-header">Profit/Loss</div>
+                    <div class="card-body">
+                        <h5 class="card-title">$5,000</h5>
+                        <p class="card-text">Net profit or loss</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stockouts -->
+            <div class="col-md-4">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-header">Stockouts</div>
+                    <div class="card-body">
+                        <h5 class="card-title">3</h5>
+                        <p class="card-text">Out-of-stock items</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
