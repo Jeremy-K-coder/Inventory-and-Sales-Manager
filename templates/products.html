@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Products
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-4">
+        <h2 class="heading">PRODUCTS</h2>
+        <p></p>
+        <!-- Filter by category -->
+        <div class="d-flex align-items-center gap-2">
+            <label for="categoryFilter">Filter by category:</label>
+            <input type="text" id="categoryFilter" class="form-control" placeholder="Enter category..." onkeyup="filterByCategory()">
+            <button type="button" class="btn btn-secondary" onclick="clearFilter()">Clear</button>
+        </div>
+        <p id="noResultsMessage" class="text-danger mt-2" style="display: none;">No matching categories found.</p>
+        
+         <!-- Search Box for Products -->
+        <div class="d-flex align-items-center mb-3">
+            <input type="text" id="productSearch" class="form-control me-2" placeholder="Search for a product..." oninput="filterProducts()">
+            <select id="productDropdown" class="form-select me-2" onchange="selectProduct()">
+                <option value="">Select a product</option>
+                {% for product in products %}
+                    <option value="{{ product['product_name'] }}">{{ product['product_name'] }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-danger" onclick="clearSearch()">Clear</button>
+        </div>
+         <!-- No Results Message -->
+        <p id="noResults" class="text-danger" style="display: none;">No matching products found.</p>
+
+        <div class="table-responsive">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Date added</th>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Current Qty</th>
+                        <th>Re-stock level</th>
+                        <th>Maximum stock</th>
+                        <th>Stock Status</th>
+                    </tr>
+                </thead>
+                <tbody id="productsTable">
+                    {% for product in products %}
+                    <tr class="product-row">
+                        <td>{{ product["date"] }}</td>
+                        <td class="product-name">{{ product["product_name"] }}</td>
+                        <td>{{ product["category"] }}</td>
+                        <td>{{ product["current_quantity"] }}</td>
+                        <td>{{ product["restock_level"] }}</td>
+                        <td>{{ product["maxstocklevel"] }}</td>
+                        <td class="stock_status-column">{{ product["stock_status"] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    
+{% endblock %}

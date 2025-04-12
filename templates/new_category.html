@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    new_category
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-4">
+        <h2 class="heading">ADD A NEW CATEGORY</h2>
+        <form action="/new_category" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="date" placeholder="Date" type="date">
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="new_category" placeholder="Add new category" type="text">
+            </div>
+            <div class="mb-3" style="text-align: center;">
+                <button class="btn btn-primary" type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

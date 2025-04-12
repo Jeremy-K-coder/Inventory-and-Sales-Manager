@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    purchase
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-4">
+        <h2 class="heading">NEW PURCHASE</h2>
+        <div>
+            <form action="/new_purchase" method="post">
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="date" placeholder="Date" type="date">
+                </div>
+                <div class="mb-3">
+                    <select name = "product" class="form-control mx-auto w-auto">
+                        <option disabled selected>Select product</option>
+                            {% for product in products %}
+                                <option value="{{ product['product_name'] }}">{{ product['product_name'] }}</option>
+                            {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="purchase_quantity" placeholder="Quantity" type="integer">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="purchase_price" placeholder="Purchase Price" type="integer">
+                </div>
+                <div class="mb-3" style="text-align: center;">
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

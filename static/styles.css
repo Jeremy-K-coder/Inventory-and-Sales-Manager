@@ -9,6 +9,9 @@
     background-color: #424141; /* Dark background */
     padding-top: 20px;
     border-top-right-radius: 20px; /* Round top-right */
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    padding-bottom: 50px; /* Prevent last items from being cut off */
 }
 
 /* Sidebar links */
@@ -27,23 +30,42 @@
 /* Hover effect */
 .sidebar a:hover {
     background-color: #575757;
+    color: white; /* Keep text white */
+    border-left: 4px solid white; /* Optional: Left border highlight */
+}
+
+/* Style scrollbar (optional) */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3); /* Light scrollbar */
+    border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); /* Track color */
 }
 
 /* Main content */
 .container.mt-4 {
-    margin-left: 220px; /* Push content right */
+    margin-left: 200px; /* Push content right */
+    margin-top: -50px;
     padding: 20px;
-    width: calc(100% - 220px); /* Adjust width to avoid overflow */
+    width: calc(100% - 150px); /* Adjust width to avoid overflow */
 }
 
 h1 {
-    margin-left: 240px; /* Moving Dashboard title a little to the right */
+    margin-left: 216px; /* Moving Dashboard title a little to the right */
+    margin-top: -20px;
     color: #424141;
 }
 
 form {
     position: relative;
     z-index: 10; /* Ensure it's above other elements */
+    margin-top: 50px;
 }
 
 .card-header {
@@ -85,3 +107,110 @@ nav .navbar-brand .green
 {
     color: #2e944b;
 }
+.heading {
+    color: darkblue; /* Text color */
+    font-weight: bold; /* Bold text */
+    background-color: lightgray; /* Light gray background */
+    padding: 10px; /* Add padding for better spacing */
+    border-radius: 5px; /* Optional: rounded corners */
+    text-align: center; /* Optional: center the text */
+    margin-top: -60px;
+}
+
+.date-filter-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 250px;
+}
+
+.calendar-icon {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.dropdown-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.custom-dropdown {
+    width: 250px;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    appearance: none;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zY2hlbWVzdGVyL3htbG5zL3N2ZyIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj4KPHBhdGggZD0iTTEwMCAwIEw1MCA1MEwgMTAwIDAgWiIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEwMCIgc3Ryb2tlLWxpbmVjYXBzZT0ibm9uZSIgLz4KPC9zdmc+Cg==');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px 16px;
+}
+
+.custom-dropdown:focus {
+    outline: none;
+    border-color: #5cb85c;
+}
+
+/* Dropdown initially hidden */
+.dropdown-content {
+    display: none;
+    flex-direction: column;
+    padding-left: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Rotate arrow when dropdown is open */
+.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+.nav-link {
+    color: white !important; /* Ensure text remains white */
+    background: none; /* Remove unwanted background */
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    background-color: #007bff; /* Bootstrap Primary Blue */
+    border: 1px solid #007bff;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+input.form-control::placeholder {
+    font-weight: 400; /* normal weight */
+    color: #b0b0b0;      /* lighter grey */
+    opacity: 1;       /* ensure full visibility */
+}
+
+/* Custom styles for the products table */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .custom-table th, .custom-table td {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+  }
+  
+  .custom-table tr:nth-child(odd) {
+    background-color: #f9f9f9;  /* Light grey for odd rows */
+  }
+  
+  .custom-table tr:hover {
+    background-color: #f1f1f1;  /* Hover effect */
+  }
+  

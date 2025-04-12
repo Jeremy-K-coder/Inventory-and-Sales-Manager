@@ -5,24 +5,26 @@
 {% endblock %}
 
 {% block main %}
-    <form action="/purchase" mehtod="post">
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="date" placeholder="Date" type="text">
-        </div>
-        <div class="mb-3">
-            <select name = "product" class="form-control mx-auto w-auto">
-                <option disabled selected>Select product</option>
-                    {% for product in products %}
-                        <option value="{{ products['product_name'] }}">{{ products['product_name'] }}</option>
-                    {% endfor %}
-            </select>
-        </div>
+    <div class="container mt-4">
+        <form action="/purchase" mehtod="post">
             <div class="mb-3">
-                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="purchase_quantity" placeholder="Quantity" type="integer">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="date" placeholder="Date" type="text">
             </div>
             <div class="mb-3">
-                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="purchase_price" placeholder="Purchase Price" type="integer">
+                <select name = "product" class="form-control mx-auto w-auto">
+                    <option disabled selected>Select product</option>
+                        {% for product in products %}
+                            <option value="{{ products['product_name'] }}">{{ products['product_name'] }}</option>
+                        {% endfor %}
+                </select>
             </div>
-         </div>
-    </form>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="purchase_quantity" placeholder="Quantity" type="integer">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="purchase_price" placeholder="Purchase Price" type="integer">
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    delete product
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-4">
+        <h2 class="heading">DELETE A PRODUCT</h2>
+        <form action="/delete_product" mehtod="post">
+            <div class="mb-3">
+                <select id="productDropdown" class="form-select me-2" onchange="selectProduct()">
+                    <option value="">Select a product</option>
+                    {% for product in products %}
+                        <option value="{{ product['product_name'] }}">{{ product['product_name'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-danger" onclick="clearSearch()">Clear</button>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Delete</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

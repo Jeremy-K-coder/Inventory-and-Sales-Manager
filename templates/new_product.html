@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    New product
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-4">
+        <h2 class="heading">ADD A NEW PRODUCT</h2>
+        <form action="/new_product" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="date" placeholder="Date" type="date">
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="new_product" placeholder="Add new product" type="text">
+            </div>
+            <div class="mb-3">
+                <select name = "category" class="form-control mx-auto w-auto">
+                    <option disabled selected>Select category</option>
+                        {% for category in categories %}
+                            <option value="{{ category['category_name'] }}">{{ category['category_name'] }}</option>
+                        {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="restock_level" placeholder="Restock level" type="text">
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="maxstock_level" placeholder="Maximum stock level" type="text">
+            </div>
+            <div class="mb-3" style="text-align: center;">
+                <button class="btn btn-primary" type="submit">Add</button>
+            </div>            
+        </form>
+    </div>
+{% endblock %}

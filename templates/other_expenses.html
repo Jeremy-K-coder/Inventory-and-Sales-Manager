@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    other expenses
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-4">
+        <h2 class="heading">OTHER EXPENSES</h2>
+        <form action="/sale" mehtod="post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="date" placeholder="Date" type="text">
+            </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="other_expense" placeholder="Expense" type="integer">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="expense_quantity" placeholder="Quantity" type="integer">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="expense_price" placeholder="Expense Price" type="integer">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

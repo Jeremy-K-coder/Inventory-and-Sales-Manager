@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    new sale
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-4">
+        <h2 class="heading">NEW SALE</h2>
+        <form action="/new_sale" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="date" placeholder="Date" type="date">
+            </div>
+            <div class="mb-3">
+                <select name = "product" class="form-control mx-auto w-auto">
+                    <option disabled selected>Select product</option>
+                        {% for product in products %}
+                            {% if product['current_quantity'] > 0 %}
+                                <option value="{{ product['product_name'] }}">{{ product['product_name'] }}</option>
+                            {% endif %}
+                        {% endfor %}
+                </select>
+            </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="sale_quantity" placeholder="Quantity" type="integer">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="sale_price" placeholder="Sale Price" type="integer">
+                </div>
+            </div>
+            <div class="mb-3" style="text-align: center;">
+                <button class="btn btn-primary" type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

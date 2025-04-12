@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Sales
+    Purchases
 {% endblock %}
 
 {% block main %}
     <div class="container mt-4">
-        <h2 class="heading">SALES</h2>
-        
+        <h2 class="heading">PURCHASES</h2>
+
         <!-- Date Filter -->
         <p>Filter by date</p>
         <div class="d-flex align-items-center gap-2">
@@ -19,12 +19,12 @@
 
             <button id="clearDateFilter" class="btn btn-secondary">Clear Dates</button>
         </div>
-        
-        <table id="salesTable" class="table table-striped mt-3">
+
+        <table id="purchasesTable" class="table table-striped mt-3">
             <thead>
                 <tr>
-                    <td colspan="4" class="text-right"><strong>Total Sales:</strong></td>
-                    <td><strong id="filteredTotal">{{ "{:,}/=".format(total_sales) }}</strong></td>
+                    <td colspan="4" class="text-right"><strong>Total Purchases:</strong></td>
+                    <td><strong id="filteredTotal">{{ "{:,}/=".format(total_purchases) }}</strong></td>
                 </tr>
                 <tr>
                     <th style="display: none;">Raw Date</th> <!-- hidden header -->
@@ -33,22 +33,22 @@
                     <th>Quantity</th>
                     <th>Unit price</th>
                     <th>Amount</th>
-                    <th>Qty Bal after Sale</th>
+                    <th>Qty after Purchase</th>
                 </tr>
             </thead>
             <tbody>
-                {% for sale in sales %}
+                {% for purchase in purchases %}
                 <tr class="competence-row">
-                    <td style="display: none;">{{ sale["sale_date_raw"] if sale["sale_date_raw"] else sale["sale_date"] }}</td> <!-- hidden raw date for comparison when filtering -->
-                    <td>{{ sale["sale_date"] }}</td>
-                    <td>{{ sale["product_name"] }}</td>
-                    <td>{{ "{:,}".format(sale["quantity"]) }}</td>
-                    <td>{{ "{:,}/=".format(sale["sale_price"]) }}</td>
-                    <td>{{ "{:,}/=".format(sale["sale_amount"]) }}</td>
-                    <td>{{ "{:,}".format(sale["qty_after_sale"]) }}</td>
+                    <td style="display: none;">{{ purchase["purchase_date_raw"] if purchase["purchase_date_raw"] else purchase["purchase_date"] }}</td> <!-- hidden raw date -->
+                    <td>{{ purchase["purchase_date"] }}</td>
+                    <td>{{ purchase["product_name"] }}</td>
+                    <td>{{ "{:,}".format(purchase["quantity"]) }}</td>
+                    <td>{{ "{:,}/=".format(purchase["purchase_price"]) }}</td>
+                    <td>{{ "{:,}/=".format(purchase["purchase_amount"]) }}</td>
+                    <td>{{ "{:,}".format(purchase["qty_after_purchase"]) }}</td>
                 </tr>
                 {% endfor %}
-            </tbody>
+            </tbody>            
         </table>
     </div>
     <script src="/static/date_filter.js"></script>
