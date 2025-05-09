@@ -19,6 +19,18 @@
 
             <button id="clearDateFilter" class="btn btn-secondary">Clear Dates</button>
         </div>
+        <div class="d-flex align-items-center mb-3">
+            <input type="text" id="productSearch" class="form-control me-2" placeholder="Search for a product..." oninput="filterProducts()">
+            <select id="productDropdown" class="form-select me-2" onchange="selectProduct()">
+                <option value="">Select a product</option>
+                {% for purchase in purchases %}
+                    <option value="{{ purchase['product_name'] }}">{{ purchase['product_name'] }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-danger" onclick="clearSearch()">Clear</button>
+        </div>
+         <!-- No Results Message -->
+        <p id="noResults" class="text-danger" style="display: none;">No matching products found.</p>
 
         <table id="purchasesTable" class="table table-striped mt-3">
             <thead>

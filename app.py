@@ -125,9 +125,10 @@ def register():
     else:
         return render_template("register.html")
     
-@app.route("/logout")
+@app.route("/logout",methods=["GET","POST"])
 def logout():
     """Log user out"""
+    print("Logout route triggered")
 
     # Forget any user_id
     session.clear()
@@ -150,17 +151,21 @@ def sales():
 @login_required
 def purchases():
     purchases = db.execute("SELECT purchases.id, purchases.product_id, purchases.date AS purchase_date, purchases.quantity, purchases.purchase_price, purchases.purchase_amount, purchases.qty_after_purchase, products.product_name FROM purchases JOIN products ON purchases.product_id = products.id ORDER BY purchase_date DESC")
+    products = db.execute("SELECT * FROM products ORDER BY product_name ASC")
     for purchase in purchases:
         purchase["purchase_date_raw"] = purchase["purchase_date"]
         purchase["purchase_date"] = datetime.strptime(purchase["purchase_date"], "%Y-%m-%d").strftime("%a, %d %b %Y")
     total_purchases = db.execute("SELECT SUM(purchases.purchase_amount) AS total_purchases FROM purchases")[0]["total_purchases"] or 0
-    return render_template("purchases.html", purchases=purchases, total_purchases=total_purchases, table_id="purchasesTable")
+    return render_template("purchases.html", purchases=purchases, products=products, total_purchases=total_purchases, table_id="purchasesTable")
     # Added table_id to render_template so it can be passed to the javascript file
     
 @app.route("/products")
 @login_required
 def products():
     products = db.execute("SELECT * FROM products ORDER BY product_name ASC")
+    for product in products:
+        product["product_date_raw"] = product["date"]
+        product["date"] = datetime.strptime(product["date"], "%Y-%m-%d").strftime("%a, %d %b %Y")
     return render_template("products.html", products=products, table_id="productsTable")
 
 
@@ -363,6 +368,7 @@ def other_expenses():
 def delete():
     if request.method == "POST":
         delete_product = request.form.get("product")
+        print(delete_product)
         db.execute("DELETE FROM products WHERE product_name = ?", delete_product)
         return redirect("/products")
     else:

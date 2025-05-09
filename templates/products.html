@@ -9,8 +9,8 @@
         <h2 class="heading">PRODUCTS</h2>
         <p></p>
         <!-- Filter by category -->
+        <label for="categoryFilter">Filter by category:</label>
         <div class="d-flex align-items-center gap-2">
-            <label for="categoryFilter">Filter by category:</label>
             <input type="text" id="categoryFilter" class="form-control" placeholder="Enter category..." onkeyup="filterByCategory()">
             <button type="button" class="btn btn-secondary" onclick="clearFilter()">Clear</button>
         </div>
@@ -34,6 +34,7 @@
             <table class="custom-table">
                 <thead>
                     <tr>
+                        <th style="display: none;">Raw Date</th> <!-- hidden header -->
                         <th>Date added</th>
                         <th>Product</th>
                         <th>Category</th>
@@ -46,6 +47,7 @@
                 <tbody id="productsTable">
                     {% for product in products %}
                     <tr class="product-row">
+                        <td style="display: none;">{{ product["product_date_raw"] if product["product_date_raw"] else product["date"] }}</td> <!-- hidden raw date -->
                         <td>{{ product["date"] }}</td>
                         <td class="product-name">{{ product["product_name"] }}</td>
                         <td>{{ product["category"] }}</td>

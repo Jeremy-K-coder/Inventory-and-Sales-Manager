@@ -14,12 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
             switch (status) {
                 case "all good":
                     console.log("Status is 'all good' – row will be green.");
-                    row.style.backgroundColor = "#28a745"; // Green
-                    row.style.color = "white";
+                    row.style.backgroundColor = "rgba(23, 216, 68, 0.5)"; // Green
+                    row.style.color = "black";
                     break;
                 case "needs restocking":
-                    row.style.setProperty("background-color", "#fd7e14", "important");  // Orange
-                    row.style.color = "white";
+                    row.style.backgroundColor = "rgba(253, 144, 20, 0.5)";  // Orange
+                    row.style.color = "black";
                     break;
                 case "overstocked":
                     row.style.backgroundColor = "#ffc107"; // Yellow
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let hasResults = false;
 
         for (let i = 0; i < rows.length; i++) {
-            const categoryCell = rows[i].getElementsByTagName("td")[2];
+            const categoryCell = rows[i].getElementsByTagName("td")[3];
 
             if (categoryCell) {
                 const categoryText = categoryCell.textContent.toLowerCase();

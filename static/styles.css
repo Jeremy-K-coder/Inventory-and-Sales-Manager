@@ -171,6 +171,11 @@ nav .navbar-brand .green
     background: none; /* Remove unwanted background */
 }
 
+.nav-link1 {
+    color: rgb(0, 162, 255) !important; /* Ensure text remains white */
+    background: none; /* Remove unwanted background */
+}
+
 .btn {
     display: inline-block;
     font-weight: 400;
