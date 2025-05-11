@@ -105,3 +105,4 @@ document.addEventListener("DOMContentLoaded", () => {
     window.selectProduct = selectProduct;
     window.clearSearch = clearSearch;
 });
+
