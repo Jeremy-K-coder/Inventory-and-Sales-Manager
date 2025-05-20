@@ -23,9 +23,83 @@
     display: flex;
     align-items: center;
     gap: 10px; /* Space between icon and text */
-    transition: 0.3s;
+    transition: transform 0.3s ease-in-out;
     padding-left: 20px;
 }
+
+/* When active, show sidebar */
+.sidebar.active {
+    left: 0;
+}
+
+/* Main content wrapper */
+.main-content {
+    position: relative; /* ✅ Added for slide animation */
+    margin-left: 0;
+    transition: margin-left 0.3s ease-in-out, transform 0.3s ease-in-out;
+    padding: 20px;
+}
+
+/* When sidebar is active, push main content */
+.main-content.shifted {
+    margin-left: 250px;
+}
+
+/* For larger screens, show sidebar by default */
+@media (min-width: 768px) {
+    .sidebar {
+        left: 0;
+    }
+
+    .main-content {
+        margin-left: 250px;
+    }
+
+    .sidebar-toggle-btn {
+        display: none;
+    }
+}
+
+/* Sidebar hidden by default on small screens */
+@media (max-width: 767.98px) {
+    .sidebar {
+        left: -250px; /* Hide sidebar */
+        transition: left 0.3s ease-in-out;
+        z-index: 1050; /* Ensure it overlays main content */
+    }
+
+    .sidebar.active {
+        left: 0; /* Show sidebar */
+    }
+
+    .main-content {
+        margin-left: 0 !important; /* Override larger screen margin */
+    }
+
+    .main-content.shifted {
+        /* Optional if you want main content to slide */
+        transform: translateX(250px);
+        transition: transform 0.3s ease-in-out;
+    }
+}
+
+/* ✅ Overlay for small screen sidebar */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 1040; /* Just behind sidebar */
+}
+
+/* Show overlay when sidebar is active */
+.sidebar-overlay.show {
+    display: block;
+}
+
 
 /* Hover effect */
 .sidebar a:hover {
@@ -48,13 +122,34 @@
     background: rgba(0, 0, 0, 0.1); /* Track color */
 }
 
+
 /* Main content */
-.container.mt-4 {
-    margin-left: 200px; /* Push content right */
-    margin-top: -50px;
-    padding: 20px;
-    width: calc(100% - 150px); /* Adjust width to avoid overflow */
+.main-content {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  padding: 20px;
 }
+
+/* When sidebar is visible, shift main content */
+.main-content.shifted {
+  margin-left: 250px; /* Match sidebar width */
+}
+
+/* Responsive: remove shift on small screens */
+@media (max-width: 767px) {
+  .main-content.shifted {
+    margin-left: 0;
+  }
+
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+}
+
 
 h1 {
     margin-left: 216px; /* Moving Dashboard title a little to the right */

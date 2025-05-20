@@ -65,6 +65,10 @@
             <div class="flex-grow-1">
                 <nav class="bg-light border navbar navbar-expand-md navbar-light">
                     <div class="container-fluid">
+                        <!-- Sidebar Toggle Button (left-aligned on small screens) -->
+                        <button class="navbar-toggler me-2" type="button" id="sidebarToggle">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
                         <a class="navbar-brand" href="/"><span class="dark blue">AMIGOS</span></a>
                         <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
                             <span class="navbar-toggler-icon"></span>
@@ -96,19 +100,21 @@
                     </header>
                 {% endif %}
     
-                <main class="container py-5">
-                    {% block main %}{% endblock %}
-                </main>
+                <div class="main-content" id="mainContent"></div>
+                    <main class="container py-5">
+                        {% block main %}{% endblock %}
+                    </main>
+                </div>
             </div>
         </div>
-        
-    <!-- Link JavaScript File Here -->
-    {% block scripts %}
-        <script src="/static/add.js"></script>
-        <script src="/static/interactivity.js"></script>
-    {% endblock %}
-
+            
+        <!--Overlay element for closing sidebar on outside click -->
+        <div id="sidebarOverlay" class="sidebar-overlay"></div>
     
-
+        <!-- Link JavaScript File Here -->
+        {% block scripts %}
+            <script src="/static/add.js"></script>
+            <script src="/static/interactivity.js"></script>
+        {% endblock %}
     </body>
 </html>
