@@ -104,5 +104,30 @@ document.addEventListener("DOMContentLoaded", () => {
     window.filterProducts = filterProducts;
     window.selectProduct = selectProduct;
     window.clearSearch = clearSearch;
-});
 
+    // Sidebar toggle logic
+    const toggleButton = document.getElementById("sidebarToggle");
+    const sidebar = document.querySelector(".sidebar");
+    const mainContent = document.getElementById("mainContent");
+    const sidebarOverlay = document.getElementById("sidebarOverlay"); // ✅ overlay
+
+    if (toggleButton && sidebar && mainContent) {
+        toggleButton.addEventListener("click", function () {
+            sidebar.classList.toggle("active");
+            mainContent.classList.toggle("shifted");
+
+            // ✅ Show or hide overlay on small screens
+            if (window.innerWidth < 768) {
+                sidebarOverlay.classList.toggle("show");
+            }
+        });
+
+        // ✅ Hide sidebar when clicking outside (on overlay)
+        sidebarOverlay.addEventListener("click", function () {
+            sidebar.classList.remove("active");
+            mainContent.classList.remove("shifted");
+            sidebarOverlay.classList.remove("show");
+            mainContent.classList.toggle('shifted');
+        });
+    }
+});
